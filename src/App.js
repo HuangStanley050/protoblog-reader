@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { fetchStart, fetch } from "./store/actions/fetch";
+import { fetch } from "./store/actions/fetch";
 import style from './App.module.css';
 import Blog from "./components/Blog";
 
@@ -13,13 +13,31 @@ class App extends Component {
   }
 
   render() {
-    return (
+    let content = (
       <div>
-        <Blog/>
+        {this.props.posts.map((data)=>{
+            return <Blog {...data} />
+        }
+        )}
       </div>
     );
+
+    if (this.props.loading) {
+      content = <h1 className={style.h1}>Loading...</h1>;
+    }
+
+    return content;
+
+
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    posts: state.post,
+    loading: state.loading
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -27,4 +45,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
