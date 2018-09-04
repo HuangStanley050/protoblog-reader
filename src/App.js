@@ -16,7 +16,7 @@ class App extends Component {
     let content = (
       <div>
         {this.props.posts.map((data)=>{
-            return <Blog {...data} />
+            return <Blog data={data} key={data.id} />
         }
         )}
       </div>

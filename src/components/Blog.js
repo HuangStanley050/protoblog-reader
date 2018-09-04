@@ -1,14 +1,14 @@
 import React from "react";
 import style from "./Blog.module.css";
 //import { connect } from "react-redux";
-
+//{props.data.content[0].text}
 const Blog = (props) => {
     console.log(props);
     return (
         <div className={style.Wrapper}>
-           <span>{props.time}</span>
+           <span>{props.data.id}</span>
            <section className={style.content}>
-            {props.content}
+            {props.data.content.map(post=><p>{post.text}</p>)}
            </section>
            
      </div>

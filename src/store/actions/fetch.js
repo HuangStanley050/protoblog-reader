@@ -2,7 +2,7 @@ import axios from "axios";
 
 const FETCH = "FETCH";
 const SUCCESS = "SUCCESS";
-const URL = "https://protoblog-7431f.firebaseio.com/post.json";
+const URL = "https://protoblog-7431f.firebaseio.com/posts.json";
 
 export const fetchStart = () => {
     return {

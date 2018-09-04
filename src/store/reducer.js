@@ -13,23 +13,20 @@ const reducer = (state = initialState, action) => {
         case "SUCCESS":
             let updatePost = [];
 
-            for (let i in action.data) {
-                let post = {
-                    content: null,
-                    time: null
-                };
-                //console.log(action.data[i].content);
-                //console.log("-----");
-                //console.log(action.data[i].id);
-                post.content = action.data[i].content;
-                post.time = action.data[i].id;
-                updatePost.push(post);
+
+            for (let post in action.data) {
+                let blog = { content: null, id: null };
+                blog.content = action.data[post].content;
+                blog.id = action.data[post].id;
+                updatePost.push(blog);
             }
-            //console.log(updatePost);
+
+            console.log(updatePost);
             return {
                 ...state,
                 post: updatePost,
                 loading: false
+
             };
         default:
             return state;
