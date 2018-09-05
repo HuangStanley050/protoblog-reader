@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetch } from "./store/actions/fetch";
+import { NavLink, Route, withRouter } from "react-router-dom";
 import style from './App.module.css';
-import Blog from "./components/Blog";
+import Blogs from "./components/Blogs";
+import Template from "./components/BlogTemplate";
 
 
 
@@ -15,10 +17,16 @@ class App extends Component {
   render() {
     let content = (
       <div>
+      <div>
         {this.props.posts.map((data)=>{
-            return <Blog data={data} key={data.id} />
+            return <NavLink to="/template"><Blogs data={data} key={data.id} /></NavLink>;
         }
         )}
+        
+      </div>
+      <div>
+         <Route path="/template" component={Template} />
+        </div>
       </div>
     );
 
@@ -45,4 +53,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

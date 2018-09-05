@@ -13,3 +13,7 @@
     padding: 5px;
     border: 1px solid red;
 }
+
+.content h2 {
+    text-align: center;
+}
