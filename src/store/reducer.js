@@ -1,6 +1,8 @@
 const initialState = {
     post: [],
-    loading: false
+    loading: false,
+    showPost: false,
+    activeID: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,13 +23,26 @@ const reducer = (state = initialState, action) => {
                 updatePost.push(blog);
             }
 
-            console.log(updatePost);
+            //console.log(updatePost);
             return {
                 ...state,
                 post: updatePost,
-                loading: false
+                loading: false,
+
 
             };
+        case "SHOW_POST":
+            return {
+                ...state,
+                showPost: true,
+                activeID: action.postID
+            };
+        case "TOGGLE":
+            return {
+                ...state,
+                showPost: !state.showPost
+            };
+
         default:
             return state;
     }
