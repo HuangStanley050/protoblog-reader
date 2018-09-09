@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetch } from "./store/actions/fetch";
-import { withRouter } from "react-router-dom";
+import ForwardButton from "./components/ForwardButton";
 import style from './App.module.css';
 import Blogs from "./components/Blogs";
 import Template from "./components/BlogTemplate";
 
+/*   ***********show all blogs****************8
 
+this.props.posts.map((data)=>{
+            return <Blogs data={data} key={data.id} />;
+          }
+        )
+
+*/
 
 class App extends Component {
 
@@ -15,20 +22,21 @@ class App extends Component {
   }
 
   render() {
-
+    //trying to show 3 blogs entries at the time//
+    let temp = [];
+    temp = this.props.posts.slice(this.props.start, this.props.start + 3);
+    console.log(temp);
 
     let content = (
+      <div className={style.container}>
       <div>
-      <div>
-        {this.props.posts.map((data)=>{
-            return <Blogs data={data} key={data.id} />;
-        }
-        )}
+        {temp.map(data=>{return <Blogs data={data} key={data.id}/>;})}
         
       </div>
       <div>
          {this.props.show?<Template/>:null}
         </div>
+      <ForwardButton/>
       </div>
     );
 
@@ -48,7 +56,8 @@ const mapStateToProps = state => {
   return {
     posts: state.post,
     loading: state.loading,
-    show: state.showPost
+    show: state.showPost,
+    start: state.start
   };
 };
 
@@ -58,4 +67,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);

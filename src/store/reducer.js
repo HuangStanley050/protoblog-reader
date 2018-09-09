@@ -2,7 +2,9 @@ const initialState = {
     post: [],
     loading: false,
     showPost: false,
-    activeID: null
+    activeID: null,
+    start: 0
+
 };
 
 const reducer = (state = initialState, action) => {

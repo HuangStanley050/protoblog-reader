@@ -27,8 +27,8 @@ const Template = (props) => {
 const mapDispatchToProps = dispatch => {
     return {
         toggle: () => dispatch(toggle())
-    }
-}
+    };
+};
 
 const mapStateToProps = state => {
     return {
