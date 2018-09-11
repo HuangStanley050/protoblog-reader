@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetch } from "./store/actions/fetch";
+import { movePost } from "./store/actions/movepost";
 import ForwardButton from "./components/ForwardButton";
 import style from './App.module.css';
 import Blogs from "./components/Blogs";
@@ -21,6 +22,10 @@ class App extends Component {
     this.props.fetchPost();
   }
 
+  movePost = () => {
+    this.props.movePost();
+  }
+
   render() {
     //trying to show 3 blogs entries at the time//
     let temp = [];
@@ -36,7 +41,7 @@ class App extends Component {
       <div>
          {this.props.show?<Template/>:null}
         </div>
-      <ForwardButton/>
+      <ForwardButton clicked={()=>this.movePost()}/>
       </div>
     );
 
@@ -63,7 +68,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPost: () => dispatch(fetch())
+    fetchPost: () => dispatch(fetch()),
+    movePost: () => dispatch(movePost())
   };
 };
 

@@ -44,6 +44,16 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 showPost: !state.showPost
             };
+        case "MOVE_POST":
+            const post_len = state.post.length;
+            let temp = state.start;
+            if (state.start + 3 < post_len) {
+                temp = state.start + 3;
+            }
+            return {
+                ...state,
+                start: temp
+            };
 
         default:
             return state;

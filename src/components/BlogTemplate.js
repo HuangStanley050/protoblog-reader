@@ -14,7 +14,8 @@ const Template = (props) => {
                 if(props.ID===post.id){
                     //return <h3>{post.content[0].text}</h3>
                     content=post.content.map(paragraph=>{
-                        return <p>{paragraph.text}</p>;
+                        //console.log(paragraph);
+                        return <p key={paragraph.key}>{paragraph.text}</p>;
                     });
                 }
             })}
