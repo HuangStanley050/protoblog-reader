@@ -54,6 +54,15 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 start: temp
             };
+        case "MOVE_BACK":
+            let initial = state.start;
+            if (state.start - 3 >= 0) {
+                initial = state.start - 3;
+            }
+            return {
+                ...state,
+                start: initial
+            };
 
         default:
             return state;

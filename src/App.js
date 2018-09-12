@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetch } from "./store/actions/fetch";
 import { movePost } from "./store/actions/movepost";
+import { moveBack } from "./store/actions/moveback";
 import ForwardButton from "./components/ForwardButton";
+import BackwardButton from "./components/BackwardButton";
 import style from './App.module.css';
 import Blogs from "./components/Blogs";
 import Template from "./components/BlogTemplate";
@@ -26,6 +28,10 @@ class App extends Component {
     this.props.movePost();
   }
 
+  moveBack = () => {
+    this.props.moveBack();
+  }
+
   render() {
     //trying to show 3 blogs entries at the time//
     let temp = [];
@@ -41,7 +47,8 @@ class App extends Component {
       <div>
          {this.props.show?<Template/>:null}
         </div>
-      <ForwardButton clicked={()=>this.movePost()}/>
+      <ForwardButton forward={()=>this.movePost()}/>
+      <BackwardButton backward={()=>this.moveBack()}/>
       </div>
     );
 
@@ -69,7 +76,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchPost: () => dispatch(fetch()),
-    movePost: () => dispatch(movePost())
+    movePost: () => dispatch(movePost()),
+    moveBack: () => dispatch(moveBack())
   };
 };
 

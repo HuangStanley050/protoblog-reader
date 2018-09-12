@@ -6,7 +6,7 @@ import "./ForwardButton.css";
 
 const ForwardButton = (props) => {
     return (
-        <span onClick={props.clicked} href = "#" className = "myButton">Forward</span>
+        <span onClick={props.forward} href = "#" className = "myButton">Forward</span>
     );
 };
 
