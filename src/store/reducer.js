@@ -1,3 +1,5 @@
+import * as actionType from "./actions/actiontypes";
+
 const initialState = {
     post: [],
     loading: false,
@@ -9,12 +11,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case "FETCH":
+        case actionType.FETCH:
             return {
                 ...state,
                 loading: true
             };
-        case "SUCCESS":
+        case actionType.SUCCESS:
             let updatePost = [];
 
 
@@ -33,18 +35,18 @@ const reducer = (state = initialState, action) => {
 
 
             };
-        case "SHOW_POST":
+        case actionType.SHOW_POST:
             return {
                 ...state,
                 showPost: true,
                 activeID: action.postID
             };
-        case "TOGGLE":
+        case actionType.TOGGLE:
             return {
                 ...state,
                 showPost: !state.showPost
             };
-        case "MOVE_POST":
+        case actionType.MOVE_POST:
             const post_len = state.post.length;
             let temp = state.start;
             if (state.start + 3 < post_len) {
@@ -54,7 +56,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 start: temp
             };
-        case "MOVE_BACK":
+        case actionType.MOVE_BACK:
             let initial = state.start;
             if (state.start - 3 >= 0) {
                 initial = state.start - 3;
