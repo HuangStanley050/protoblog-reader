@@ -10,10 +10,6 @@ const ForwardButton = (props) => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        start: state.start
-    };
-}
+
 
 export default ForwardButton;

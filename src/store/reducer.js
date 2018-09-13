@@ -5,12 +5,18 @@ const initialState = {
     loading: false,
     showPost: false,
     activeID: null,
+    token: null,
     start: 0
 
 };
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionType.LOGIN_SUCCESS:
+            return {
+                ...state,
+                token: action.token
+            }
         case actionType.FETCH:
             return {
                 ...state,

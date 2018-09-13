@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetch } from "./store/actions/fetch";
+
 import { movePost } from "./store/actions/movepost";
 import { moveBack } from "./store/actions/moveback";
 import ForwardButton from "./components/ForwardButton";
@@ -21,6 +22,7 @@ this.props.posts.map((data)=>{
 class App extends Component {
 
   componentDidMount() {
+
     this.props.fetchPost();
   }
 
@@ -36,7 +38,7 @@ class App extends Component {
     //trying to show 3 blogs entries at the time//
     let temp = [];
     temp = this.props.posts.slice(this.props.start, this.props.start + 3);
-    console.log(temp);
+    //console.log(temp);
 
     let content = (
       <div className={style.container}>
@@ -69,7 +71,8 @@ const mapStateToProps = state => {
     posts: state.post,
     loading: state.loading,
     show: state.showPost,
-    start: state.start
+    start: state.start,
+    token: state.token
   };
 };
 
@@ -78,6 +81,7 @@ const mapDispatchToProps = dispatch => {
     fetchPost: () => dispatch(fetch()),
     movePost: () => dispatch(movePost()),
     moveBack: () => dispatch(moveBack())
+
   };
 };
 
